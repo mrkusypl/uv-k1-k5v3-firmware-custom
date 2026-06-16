@@ -1635,6 +1635,10 @@ void UI_DisplayMain(void)
         {
             if (state < ARRAY_SIZE(VfoStateStr))
                 UI_PrintString(VfoStateStr[state], 35, 0, line, 8);
+#ifdef ENABLE_FEAT_F4HWN
+            if (gSetting_set_ptt_session && gPttOnePushCounter != 3)
+                gPttOnePushCounter = 3;
+#endif
         }
         else if (gInputBoxIndex > 0 && IS_FREQ_CHANNEL(gEeprom.ScreenChannel[vfo_num]) && gEeprom.TX_VFO == vfo_num)
         {   // user entering a frequency
